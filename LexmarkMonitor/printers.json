@@ -1,0 +1,42 @@
+[
+  {
+    "Name": "negro del sur",
+    "Model": "MX511de",
+    "Ip": "172.30.40.23",
+    "SessionId": "",
+    "SessionKey": "",
+    "SessionName": ""
+  },
+  {
+    "Name": "Litigios 2",
+    "Model": "MX511de",
+    "Ip": "192.168.200.27",
+    "SessionId": "",
+    "SessionKey": "",
+    "SessionName": ""
+  },
+  {
+    "Name": "color 12",
+    "Model": "CX735adse",
+    "Ip": "172.30.50.21",
+    "SessionId": "",
+    "SessionKey": "",
+    "SessionName": ""
+  },
+  {
+    "Name": "Archivos",
+    "Model": "MX511de",
+    "Ip": "192.168.200.16",
+    "SessionId": "",
+    "SessionKey": "",
+    "SessionName": ""
+  },
+  {
+    "Name": "logistik",
+    "Model": "CX725dhe",
+    "Ip": "172.30.50.20",
+    "SessionId": "",
+    "SessionKey": "",
+    "SessionName": ""
+  }
+]

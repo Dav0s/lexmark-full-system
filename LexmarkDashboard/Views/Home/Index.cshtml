@@ -1,0 +1,178 @@
+﻿@model List<LexmarkDashboard.Models.PrinterStatus>
+
+@{
+    ViewData["Title"] = "Dashboard Impresoras";
+}
+
+<style>
+    .header-container { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+    th { background-color: #f0f0f0; }
+    progress { width: 120px; }
+    .btn-action { padding: 10px 20px; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; border: none; cursor: pointer; }
+    .btn-admin { background-color: #6c757d; }
+    .btn-add { background-color: #28a745; }
+    .na { color: #777; font-style: italic; }
+    .section-title { margin-top: 30px; margin-bottom: 15px; font-size: 1.4rem; font-weight: bold; }
+</style>
+
+<div class="header-container">
+    <h1>Dashboard Impresoras</h1>
+    <div>
+        <button type="button" class="btn-action btn-add" data-bs-toggle="modal" data-bs-target="#modalAgregar">
+            ➕ Agregar Impresora
+        </button>
+        <a href="@Url.Action("Index", "Printers")" class="btn-action btn-admin">⚙️ Gestionar</a>
+        <!-- Nuevo botón para exportar a CSV -->
+        <a href="@Url.Action("ExportToCsv", "Home")" class="btn-action" style="background-color: #17a2b8;">📥 Exportar CSV</a>
+        <a href="@Url.Action("Index", "Supplies")" class="btn-action" style="background-color: #ffc107; color: #000;">📦 Insumos</a>
+    </div>
+</div>
+
+<!-- Modal de Agregar Impresora -->
+<div class="modal fade" id="modalAgregar" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">✨ Nueva Impresora</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Printers" asp-action="Index" method="post">
+                    <input type="hidden" name="returnUrl" value="Dashboard" />
+                    
+                    <div class="mb-3">
+                        <label>Nombre:</label>
+                        <input type="text" name="Name" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>IP:</label>
+                        <input type="text" name="Ip" class="form-control" required />
+                    </div>
+                    <div class="mb-3">
+                        <label>Modelo:</label>
+                        <select name="Model" class="form-control">
+                            <option value="CX725dhe">CX725dhe</option>
+                            <option value="CX735adse">CX735adse</option>
+                            <option value="MX511de">MX511de</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">💾 Guardar Impresora</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Contenedor para actualización automática -->
+<div id="contenedorTabla">
+    @{
+        // Filtramos las impresoras en color (las que tienen Cian) y las monocromáticas (MX511de)
+        var colorPrinters = Model.Where(p => p.Cyan.HasValue).ToList();
+        var monoPrinters = Model.Where(p => !p.Cyan.HasValue).ToList();
+    }
+
+    <!-- TABLA DE IMPRESORAS A COLOR -->
+    <div class="section-title">🎨 Impresoras Color</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Impresora</th>
+                <th>IP</th>
+                <th>Negro</th>
+                <th>Cian</th>
+                <th>Magenta</th>
+                <th>Amarillo</th>
+                <th>Fusor</th>
+                <th>Imagen Negra</th>
+                <th>Kit Color</th>
+                <th>Transferencia</th>
+                <th>Desecho</th>
+                <th>Actualizado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!colorPrinters.Any())
+            {
+                <tr><td colspan="12" class="na">No hay impresoras a color registradas.</td></tr>
+            }
+            else
+            {
+                @foreach (var printer in colorPrinters)
+                {
+                    <tr>
+                        <td>@printer.Printer</td>
+                        <td>@printer.Ip</td>
+                        <td>@printer.Black%<br /><progress value="@printer.Black" max="100"></progress></td>
+                        <td>@($"{printer.Cyan}%")<br /><progress value="@printer.Cyan" max="100"></progress></td>
+                        <td>@($"{printer.Magenta}%")<br /><progress value="@printer.Magenta" max="100"></progress></td>
+                        <td>@($"{printer.Yellow}%")<br /><progress value="@printer.Yellow" max="100"></progress></td>
+                        <td>@(printer.Fuser.HasValue ? $"{printer.Fuser}%" : "N/A")</td>
+                        <td>@(printer.BlackImageUnit.HasValue ? $"{printer.BlackImageUnit}%" : "N/A")</td>
+                        <td>@(printer.ColorImageKit.HasValue ? $"{printer.ColorImageKit}%" : "N/A")</td>
+                        <td>@(printer.TransferModule.HasValue ? $"{printer.TransferModule}%" : "N/A")</td>
+                        <td>@printer.WasteToner</td>
+                        <td>@printer.UpdatedAt</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <!-- TABLA DE IMPRESORAS MONOCROMÁTICAS (MX511de) -->
+    <div class="section-title">🖨️ Impresoras Monocromáticas (MX511de)</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Impresora</th>
+                <th>IP</th>
+                <th>Tóner Negro</th>
+                <th>Mantenimiento / Fusor</th>
+                <th>Unidad de Imagen</th>
+                <th>Estado / Desecho</th>
+                <th>Actualizado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!monoPrinters.Any())
+            {
+                <tr><td colspan="7" class="na">No hay impresoras monocromáticas registradas.</td></tr>
+            }
+            else
+            {
+                @foreach (var printer in monoPrinters)
+                {
+                    <tr>
+                        <td>@printer.Printer</td>
+                        <td>@printer.Ip</td>
+                        <td>
+                            @if (printer.Black.HasValue)
+                            {
+                                @($"{printer.Black}%")<br /><progress value="@printer.Black" max="100"></progress>
+                            }
+                            else
+                            {
+                                <span class="na">N/A</span>
+                            }
+                        </td>
+                        <td>@(printer.Fuser.HasValue ? $"{printer.Fuser}%" : "N/A")</td>
+                        <td>@(printer.BlackImageUnit.HasValue ? $"{printer.BlackImageUnit}%" : "N/A")</td>
+                        <td>@printer.WasteToner</td>
+                        <td>@printer.UpdatedAt</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Script para actualización automática silenciosa mediante AJAX -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    setInterval(function() {
+        // Refresca únicamente el contenido dentro de #contenedorTabla cada 10 segundos sin parpadear la pantalla completa
+        $('#contenedorTabla').load(window.location.href + " #contenedorTabla > *");
+    }, 10000); // 10 segundos
+</script>

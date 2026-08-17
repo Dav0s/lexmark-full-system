@@ -1,0 +1,17 @@
+# Visual Studio / .NET Core (.vs, bin, obj)
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de datos locales y bases de datos
+supplies.json
+*.db
+*.db-journal
+
+# Archivos subidos por los usuarios (facturas / imágenes)
+LexmarkDashboard/wwwroot/uploads/invoices/*
+!LexmarkDashboard/wwwroot/uploads/invoices/.gitkeep

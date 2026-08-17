@@ -1,0 +1,728 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="spinner-block">
+<div class="block-spinner"></div>
+</div>
+
+
+
+
+<ul class="breadcrumb" role="navigation">
+
+
+<li data-path="/Status" data-preserve-query="0" id="Status-Breadcrumb"
+
+class="breadcrumb-item">
+Estado
+
+</li>
+
+
+</ul>
+
+
+<div class="bodyHeader" role="gridcell">
+<span class="mainHeader" role="heading" 
+tabindex = "1000"
+>
+
+
+
+
+
+
+<span class="translated" data-textid="67964"
+tabindex="-1">
+Estado
+</span>
+
+
+
+</span>
+</div>
+
+<div id="Status" class="page" data-node="Status" data-init="initPage(this);" >
+
+<div class="setting-saved-message">
+<div class="setting-saved-spinner"></div>
+<div class="setting-saved-message-text"></div>
+</div>
+
+<div class="page-contents setting-contents"
+>
+
+<ul>
+
+
+<li id="IrPanel" data-node="IrPanel" class="child-row" >
+
+<div class="panel" panel-data-node="IrPanel" data-init="initPanel(this);" data-toggleable="1"
+>
+<div class="panel-header" role="tab" tabindex = "1001"
+>
+<div class="panel-header-indicator"></div>
+<span class="translated" data-textid="72888"
+tabindex="-1">
+Mensajes
+</span>
+</div>
+<div class="setting-saved-message">
+<div class="setting-saved-spinner"></div>
+<div class="setting-saved-message-text"></div>
+</div>
+<div class="panel-contents setting-contents ">
+<ul>
+<li id="Irs" data-node="Irs" class="child-row" >
+<div class="ir-list" data-init="initIrList(this);" >
+<div class="ir-alerts-container">
+<div class="ir-header">
+<span class="translated" data-textid="73282"
+tabindex="-1">
+Alertas
+</span>
+</div>
+<div class="ir-header-button">
+<button tabindex = "1002"
+class="action greyBtn" name="ir-reset-printer">
+<span class="translated" data-textid="70437"
+tabindex="-1">
+Restablecer Impresora
+</span>
+</button>
+</div>
+<table class="tablesorter ir-alerts">
+<thead>
+<tr>
+<th class="ir-icon"></th>
+<th class="ir-message">
+<span class="translated" data-textid="68454"
+tabindex="-1">
+Mensaje
+</span>
+</th>
+<th class="ir-source">
+<span class="translated" data-textid="76771"
+tabindex="-1">
+Origen
+</span>
+</th>
+<th class="ir-actions"></th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div class="ir-warnings-container">
+<div class="ir-header">
+<span class="translated" data-textid="67494"
+tabindex="-1">
+Advertencias
+</span>
+</div>
+<table class="tablesorter ir-warnings">
+<thead>
+<tr>
+<th class="ir-icon"></th>
+<th class="ir-message">
+<span class="translated" data-textid="68454"
+tabindex="-1">
+Mensaje
+</span>
+</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+<ul class="links">
+</ul>
+</div>
+</div>
+
+</li>
+
+<li id="ParkedJobs" data-node="ParkedJobs" class="child-row" >
+
+<div class="panel" panel-data-node="ParkedJobs" data-init="initPanel(this);" data-toggleable="1"
+>
+<div class="panel-header" role="tab" tabindex = "1005"
+>
+<div class="panel-header-indicator"></div>
+<span class="translated" data-textid="70363"
+tabindex="-1">
+Necesitan consumibles
+</span>
+</div>
+<div class="setting-saved-message">
+<div class="setting-saved-spinner"></div>
+<div class="setting-saved-message-text"></div>
+</div>
+<div class="panel-contents setting-contents ">
+<ul>
+<li id="ParkedJobsList" data-node="ParkedJobsList" class="child-row" >
+<div readonly class="basicTable" data-setting="PARKEDJOBS_LIST" data-init="initBasicTable(this)" data-edit="Status/ParkedJobs/ParkedJobsList/" data-refresh="ParkedJobsList" data-length="" data-empty-text="TXT_EMPTY_QUEUE">
+<div class="tableButtonRow">
+</div>
+<div class="tableHolder" style="overflow-x:auto;">
+<table class="tablesorter">
+<thead >
+<tr>
+<th data-field="jobType" >
+<span class="translated" data-textid="74548"
+tabindex="-1">
+Tipo de trabajo
+</span>
+</th>
+<th data-field="missingResource" >
+<span class="translated" data-textid="67964"
+tabindex="-1">
+Estado
+</span>
+</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+</li>
+</ul>
+<ul class="links">
+</ul>
+</div>
+</div>
+
+</li>
+
+<li id="Supplies" data-node="Supplies" class="child-row" >
+
+<div class="content " data-init="initControlNode(this);" data-child="" >
+<div class="groupHeader">
+<span class="translated" data-textid="67586"
+tabindex="-1">
+Consumibles
+</span>
+</div>
+<div class="panel-contents">
+<ul>
+<li id="NLRP" data-node="NLRP" class="child-row" >
+<div class="NLRPNode" data-init="initNLRP(this);">
+</div>
+</li>
+<li id="TonerSupplies" data-node="TonerSupplies" class="child-row" >
+<div class="supplyStatusContainer" data-init="initSupplyStatusContainer(this)">
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67527"
+tabindex="-1">
+Cartucho negro
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-1" >
+<div class="progress-inner BlackGauge" role="img" title="15%" aria-labelledby="15%">
+<div class="progress-slider">
+<span class="dataText">15</span>
+</div>
+</div> </div>
+</div>
+</div>
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67526"
+tabindex="-1">
+Cartucho cian
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-2" >
+<div class="progress-inner CyanGauge" role="img" title="1%" aria-labelledby="1%">
+<div class="progress-slider">
+<span class="dataText">1</span>
+</div>
+</div> </div>
+</div>
+</div>
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67525"
+tabindex="-1">
+Cartucho magenta
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-3" >
+<div class="progress-inner MagentaGauge" role="img" title="3%" aria-labelledby="3%">
+<div class="progress-slider">
+<span class="dataText">3</span>
+</div>
+</div> </div>
+</div>
+</div>
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67524"
+tabindex="-1">
+Cartucho amarillo
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-4" >
+<div class="progress-inner YellowGauge" role="img" title="79%" aria-labelledby="79%">
+<div class="progress-slider">
+<span class="dataText">79</span>
+</div>
+</div> </div>
+</div>
+</div>
+</div>
+</li>
+<li id="PCDrumStatus" data-node="PCDrumStatus" class="child-row" >
+<div class="supplyStatusContainer" data-init="initSupplyStatusContainer(this)">
+</div>
+</li>
+<li id="FuserSuppliesStatus" data-node="FuserSuppliesStatus" class="child-row" >
+<div class="supplyStatusContainer" data-init="initSupplyStatusContainer(this)">
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="65634"
+tabindex="-1">
+Fusor
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-32" >
+<div class="progress-inner BlackGauge" role="img" title="63%" aria-labelledby="63%">
+<div class="progress-slider">
+<span class="dataText">63</span>
+</div>
+</div> </div>
+</div>
+</div>
+</div>
+</li>
+<li id="OtherSuppliesStatusGauge" data-node="OtherSuppliesStatusGauge" class="child-row" >
+<div class="supplyStatusContainer" data-init="initSupplyStatusContainer(this)">
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="68236"
+tabindex="-1">
+Unidad de imagen de tinta negra
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-57" >
+<div class="progress-inner BlackGauge" role="img" title="74%" aria-labelledby="74%">
+<div class="progress-slider">
+<span class="dataText">74</span>
+</div>
+</div> </div>
+</div>
+</div>
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="73756"
+tabindex="-1">
+Kit de imagen de color
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-58" >
+<div class="progress-inner BlackGauge" role="img" title="77%" aria-labelledby="77%">
+<div class="progress-slider">
+<span class="dataText">77</span>
+</div>
+</div> </div>
+</div>
+</div>
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67349"
+tabindex="-1">
+Módulo de transferencia
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="progress" role="presentation" tabindex="" data-deviceid="8-35" >
+<div class="progress-inner BlackGauge" role="img" title="66%" aria-labelledby="66%">
+<div class="progress-slider">
+<span class="dataText">66</span>
+</div>
+</div> </div>
+</div>
+</div>
+</div>
+</li>
+<li id="OtherSuppliesStatusLevel" data-node="OtherSuppliesStatusLevel" class="child-row" >
+<div class="supplyStatusContainer" data-init="initSupplyStatusContainer(this)">
+<div class="contentRow" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="68245"
+tabindex="-1">
+Contenedor de tóner de desecho
+</span>
+<br />
+</div>
+<div class="contentBody" role="presentation">
+<div class="supplyStatusIndicator" role="img" aria-labelledby="supplystatus-8-112" tabindex="" data-deviceId="8-112">
+<label id="supplystatus-8-112" aria-hidden="true">
+<span class="translated" data-textid="67896"
+tabindex="-1">
+OK
+</span>
+</label>
+<div class="statusIndicator error">
+<div class="text" aria-label="">
+<span class="translated" data-textid="66109"
+tabindex="-1">
+Llena
+</span>
+</div>
+<div class="angle right">&nbsp;</div>
+</div>
+<div class="statusIndicator warning">
+<div class="angle left">&nbsp;</div>
+<div class="text" aria-label="">
+<span class="translated" data-textid="73035"
+tabindex="-1">
+Casi lleno
+</span>
+</div>
+<div class="angle right">&nbsp;</div>
+</div>
+<div class="statusIndicator ok selected">
+<div class="angle left ">&nbsp;</div>
+<div class="text" aria-label="">
+<span class="translated" data-textid="75701"
+tabindex="-1">
+OK
+</span>
+</div>
+</div>
+<div class="statusIndicator missing" id="missinglevel">
+<div class="text" aria-label="">
+<span class="translated" data-textid="67471"
+tabindex="-1">
+Falta
+</span>
+</div>
+</div>
+<div class="statusIndicator emptyormissing" id="emptyormissing">
+<div class="text" aria-label="">
+<span class="translated" data-textid="75411"
+tabindex="-1">
+Vacío o falta
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+</li>
+
+<li id="Printer" data-node="Printer" class="child-row" >
+
+<div class="content " data-init="initControlNode(this);" data-child="" >
+<div class="groupHeader">
+<span class="translated" data-textid="67399"
+tabindex="-1">
+Impresora
+</span>
+</div>
+<div class="panel-contents">
+<ul>
+<li id="DeviceType" data-node="DeviceType" class="child-row" >
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="66242"
+tabindex="-1">
+Tipo de dispositivo
+</span>
+</div>
+<div class="contentBody" role="presentation">
+<div class="node-display node-textdisplay">
+<span class="untranslated">Color</span>
+</div>
+</div>
+</li>
+<li id="DeviceSpeed" data-node="DeviceSpeed" class="child-row" >
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="72907"
+tabindex="-1">
+Velocidad del dispositivo
+</span>
+</div>
+<div class="contentBody" role="presentation">
+<div class="node-display node-textdisplay">
+<span class="untranslated">Hasta 50 páginas/minuto</span>
+</div>
+</div>
+</li>
+<li id="DeviceFirmwareLevel" data-node="DeviceFirmwareLevel" class="child-row" >
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="72908"
+tabindex="-1">
+Nivel de firmware
+</span>
+</div>
+<div class="contentBody" role="presentation">
+<div class="node-display node-textdisplay">
+<span class="untranslated">CXTAT.230.329</span>
+</div>
+</div>
+</li>
+<li id="DeviceSerialNumberLxk" data-node="DeviceSerialNumberLxk" class="child-row" >
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="71123"
+tabindex="-1">
+Número de serie
+</span>
+</div>
+<div class="contentBody" role="presentation">
+<div class="node-display node-textdisplay">
+<span class="untranslated">75288320F2VXV</span>
+</div>
+</div>
+</li>
+<li id="InputTrayStatus" data-node="InputTrayStatus" class="child-row" >
+<div class="content " data-init="initControlNode(this);" data-child="" >
+<div class="panel-contents">
+<ul>
+<li id="InputsStatus" data-node="InputsStatus" class="child-row" >
+<div class="trayStatusContainer" data-init="initTrayStatusContainer(this)">
+<div class="contentRow" data-deviceId="1-131" role="gridcell">
+<div class="trayInfoTitle contentHeader" role="heading">
+<span class="translated" data-textid="65635"
+tabindex="-1">
+Alimentador multiuso
+</span>
+</div>
+<div class="contentBody trayStatus tray-ok" role="presentation">
+<div class="trayInfoContainer">
+<div class="contentRow trayInfo" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67421"
+tabindex="-1">
+Capacidad
+</span>
+</div>
+<div class="contentBody" role="presentation">
+100
+</div>
+</div>
+<div class="contentRow trayInfo" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67976"
+tabindex="-1">
+Tamaño
+</span>
+</div>
+<div class="contentBody" role="presentation">
+A4
+</div>
+</div>
+<div class="contentRow trayInfo" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="66227"
+tabindex="-1">
+Tipo
+</span>
+</div>
+<div class="contentBody" role="presentation">
+Normal
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="contentRow" data-deviceId="1-1" role="gridcell">
+<div class="trayInfoTitle contentHeader" role="heading">
+<span class="translated" data-textid="65633"
+tabindex="-1">
+Bandeja 1
+</span>
+</div>
+<div class="contentBody trayStatus tray-ok" role="presentation">
+<div class="trayInfoContainer">
+<div class="contentRow trayInfo" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67421"
+tabindex="-1">
+Capacidad
+</span>
+</div>
+<div class="contentBody" role="presentation">
+550
+</div>
+</div>
+<div class="contentRow trayInfo" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="67976"
+tabindex="-1">
+Tamaño
+</span>
+</div>
+<div class="contentBody" role="presentation">
+Oficio (México)
+</div>
+</div>
+<div class="contentRow trayInfo" role="gridcell">
+<div class="contentHeader" role="heading">
+<span class="translated" data-textid="66227"
+tabindex="-1">
+Tipo
+</span>
+</div>
+<div class="contentBody" role="presentation">
+Normal
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</li>
+<li id="OutputBins" data-node="OutputBins" class="child-row" >
+<div class="content " data-init="initControlNode(this);" data-child="" >
+<div class="panel-contents">
+<ul>
+<li id="OutputBinsStatus" data-node="OutputBinsStatus" class="child-row" >
+<div class="outputBinStatusContainer" data-init="initOutputBinStatusContainer(this)">
+<div class="contentRow" data-deviceid="2-1" role="gridcell">
+<div class="contentHeader" role="heading">
+Salida estándar
+</div>
+<div class="contentBody" role="presentation">
+<div class="binStatusIndicator" role="img" aria-labelledby="supplystatus-2-1" >
+<label id="supplystatus-2-1" aria-hidden="true">
+<span class="translated" data-textid="75701"
+tabindex="-1">
+OK
+</span>
+</label>
+<div class="statusIndicator error">
+<div class="text" aria-label="">
+<span class="translated" data-textid="66109"
+tabindex="-1">
+Llena
+</span>
+</div>
+<div class="angle right">&nbsp;</div>
+</div>
+<div class="statusIndicator warning">
+<div class="angle left">&nbsp;</div>
+<div class="text" aria-label="">
+<span class="translated" data-textid="73035"
+tabindex="-1">
+Casi lleno
+</span>
+</div>
+<div class="angle right">&nbsp;</div>
+</div>
+<div class="statusIndicator ok selected">
+<div class="angle left ">&nbsp;</div>
+<div class="text" aria-label="">
+<span class="translated" data-textid="75701"
+tabindex="-1">
+OK
+</span>
+</div>
+</div>
+<div class="statusIndicator missing" id="missinglevel">
+<div class="text" aria-label="">
+</div>
+</div>
+<div class="statusIndicator emptyormissing" id="emptyormissing">
+<div class="text" aria-label="">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+
+</li>
+
+
+</ul>
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+ 
