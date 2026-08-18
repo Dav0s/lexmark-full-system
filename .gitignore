@@ -15,3 +15,6 @@ supplies.json
 # Archivos subidos por los usuarios (facturas / imágenes)
 LexmarkDashboard/wwwroot/uploads/invoices/*
 !LexmarkDashboard/wwwroot/uploads/invoices/.gitkeep
+
+# Archivos de configuración local de impresoras
+printers.json
