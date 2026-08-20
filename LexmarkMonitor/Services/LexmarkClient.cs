@@ -9,15 +9,11 @@ public class LexmarkClient : IPrinterClient
 {
     private readonly string _printerName;
     private readonly string _ip;
-    private readonly string _username;
-    private readonly string _password;
 
-    public LexmarkClient(string printerName, string ip, string username, string password)
+    public LexmarkClient(string printerName, string ip)
     {
         _printerName = printerName;
         _ip = ip;
-        _username = username;
-        _password = password;
     }
 
     public async Task<PrinterStatus> GetStatusAsync()
@@ -30,14 +26,11 @@ public class LexmarkClient : IPrinterClient
         string html = string.Empty;
         bool isColorPublic = false;
 
-        // =========================================================================
         // ESTRATEGIA 1: Lectura desde el Endpoint de Consumibles Tradicional
-        // =========================================================================
         try
         {
             html = await client.GetStringAsync($"http://{_ip}/webglue/content?c=Status");
             
-            // Si el HTML devuelto contiene los porcentajes sin redirigir de forma forzada a un Login
             if (html.Contains("title=\"") && (html.Contains("negro") || html.Contains("Negro") || html.Contains("Black")))
             {
                 isColorPublic = true;
@@ -45,20 +38,16 @@ public class LexmarkClient : IPrinterClient
         }
         catch 
         {
-            // Si hay un fallo de red o timeout, permitimos que intente la vía alternativa
+            // Petición fallida: continúa a estrategia secundaria
         }
 
-        // =========================================================================
-        // ESTRATEGIA 2: Ruta alternativa de Datos Públicos (Para Modelos Color Estrictos)
-        // =========================================================================
+        // ESTRATEGIA 2: Ruta alternativa de Datos
         if (!isColorPublic)
         {
             try
             {
-                // Consultamos el endpoint de Device Info que los modelos color exponen de forma abierta
                 html = await client.GetStringAsync($"http://{_ip}/cgi-bin/dynamic/printer/config/reports/device_info.html");
                 
-                // Si el CGI clásico no responde o está vacío, usamos la ruta simplificada de soporte
                 if (string.IsNullOrEmpty(html) || !html.Contains("%"))
                 {
                     html = await client.GetStringAsync($"http://{_ip}/webglue/content?page=supplies");
@@ -70,9 +59,7 @@ public class LexmarkClient : IPrinterClient
             }
         }
 
-        // =========================================================================
-        // PARSEO FLEXIBLE DE VALORES (Soporta múltiples variantes de firmware de Lexmark)
-        // =========================================================================
+        // PARSEO DE VALORES
         return new PrinterStatus
         {
             Printer = _printerName,
@@ -105,12 +92,10 @@ public class LexmarkClient : IPrinterClient
     {
         foreach (var label in labels)
         {
-            // Patrón A: Formato webglue clásico (title="XX%")
             var patternA = $"{Regex.Escape(label)}.*?title=\"(\\d+)%\"";
             var matchA = Regex.Match(html, patternA, RegexOptions.Singleline | RegexOptions.IgnoreCase);
             if (matchA.Success) return int.Parse(matchA.Groups[1].Value);
 
-            // Patrón B: Formato de tablas de reportes planos (XX%)
             var patternB = $"{Regex.Escape(label)}.*?(\\d+)\\s*%";
             var matchB = Regex.Match(html, patternB, RegexOptions.Singleline | RegexOptions.IgnoreCase);
             if (matchB.Success) return int.Parse(matchB.Groups[1].Value);

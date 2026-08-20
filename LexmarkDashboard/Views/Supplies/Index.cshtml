@@ -5,9 +5,16 @@
     var models = ViewBag.Models as List<string> ?? new List<string>();
 }
 
-<div class="container-fluid mt-3 px-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>📦 Gestión de Compras e Insumos por Modelo</h2>
+<style>
+    /* Estilo unificado para la barra superior enmarcada */
+    .top-navbar { display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 15px 20px; margin-bottom: 25px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e0e0e0; width: 100%; box-sizing: border-box; }
+</style>
+
+<div class="container-fluid px-3">
+    
+    <!-- Barra Superior Enmarcada e Idéntica al resto del sistema -->
+    <div class="top-navbar">
+        <h1 class="m-0 fs-3 fw-bold text-dark" style="font-size: 1.5rem; margin: 0;">📦 Gestión de Compras e Insumos por Modelo</h1>
         <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">⬅️ Volver al Dashboard</a>
     </div>
 
@@ -22,7 +29,7 @@
 
     <form asp-controller="Supplies" asp-action="Add" method="post" enctype="multipart/form-data" id="purchaseForm">
         <div class="row">
-            <!-- COLUMNA IZQUIERDA: Formulario de Carga (Igualado en altura con la derecha) -->
+            <!-- COLUMNA IZQUIERDA: Formulario de Carga -->
             <div class="col-md-4 d-flex flex-column">
                 <div class="card shadow-sm p-3 mb-3 d-flex flex-column flex-fill">
                     <h4 class="mb-3">Datos Generales</h4>
@@ -65,17 +72,16 @@
                     </div>
                     <button type="button" class="btn btn-outline-primary btn-sm w-100 mb-3" onclick="addItemToList()">➕ Agregar a la lista</button>
 
-                    <!-- Empuja el botón de guardar al fondo exacto si sobra espacio interno -->
                     <div class="mt-auto">
                         <button type="submit" class="btn btn-success w-100" id="btnSubmit" disabled>💾 Guardar Compra Completa</button>
                     </div>
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA: Dividida Mitad y Mitad exactamente -->
+            <!-- COLUMNA DERECHA: Paneles Divididos -->
             <div class="col-md-8 d-flex flex-column" style="height: 720px;">
                 
-                <!-- Panel Superior: Insumos en esta Carga (Ocupa el 50%) -->
+                <!-- Panel Superior: Insumos en esta Carga -->
                 <div class="card shadow-sm p-3 mb-3 d-flex flex-column flex-fill" style="min-height: 0;">
                     <h4 class="mb-2 flex-shrink-0">Insumos en esta Carga</h4>
                     <div class="table-responsive flex-fill" style="overflow-y: auto;">
@@ -98,7 +104,7 @@
                     </div>
                 </div>
 
-                <!-- Panel Inferior: Historial de Compras Registradas (Ocupa el 50%) -->
+                <!-- Panel Inferior: Historial de Compras Registradas -->
                 <div class="card shadow-sm p-3 d-flex flex-column flex-fill mb-3" style="min-height: 0;">
                     <h4 class="mb-2 flex-shrink-0">Historial de Compras Registradas</h4>
                     <div class="table-responsive flex-fill" style="overflow-y: auto;">
@@ -226,6 +232,18 @@
         }
 
         checkSubmitButton();
+    }
+
+    function checkSubmitButton() {
+        const tbody = document.getElementById('itemsTableBody');
+        const btnSubmit = document.getElementById('btnSubmit');
+        const emptyRow = document.getElementById('emptyRow');
+        
+        if (tbody.children.length > 0 && !emptyRow) {
+            btnSubmit.removeAttribute('disabled');
+        } else {
+            btnSubmit.setAttribute('disabled', 'true');
+        }
     }
 
     checkSubmitButton();

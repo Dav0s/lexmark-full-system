@@ -6,8 +6,9 @@ public class PrinterStatus
     public string Ip { get; set; } = "";
     public DateTime UpdatedAt { get; set; }
 
-    public int? Black { get; set; }
+    public string Floor { get; set; } = "";
 
+    public int? Black { get; set; }
 
     public int? Cyan { get; set; }
     public int? Magenta { get; set; }

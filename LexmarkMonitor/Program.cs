@@ -26,20 +26,19 @@ public class MonitorImpresorasService : BackgroundService
         await RealizarMonitoreo();
 
         int segundosAcumulados = 0;
-        const int intervaloRutinarioSegundos = 300; // 5 minutos (300 segundos)
+        const int intervaloRutinarioSegundos = 300; // 5 minutos
 
         while (!stoppingToken.IsCancellationRequested)
         {
             try
             {
-                // 1. ESCUCHA PERMANENTE: Si existe el trigger, actualizamos YA MISMO
+                // 1. ESCUCHA PERMANENTE: Si existe el trigger, actualizamos de inmediato
                 if (File.Exists(TriggerFile))
                 {
                     Console.WriteLine("⚡ ¡Señal detectada! Actualizando impresoras de inmediato...");
                     File.Delete(TriggerFile);
                     await RealizarMonitoreo();
                     
-                    // Reiniciamos el contador de los 5 minutos para evitar un doble escaneo innecesario
                     segundosAcumulados = 0; 
                 }
 
@@ -56,7 +55,6 @@ public class MonitorImpresorasService : BackgroundService
                 Console.WriteLine($"❌ Error en ciclo de escucha: {ex.Message}");
             }
 
-            // Pausa corta de 2 segundos para escuchar constantemente sin saturar el CPU
             await Task.Delay(TimeSpan.FromSeconds(2), stoppingToken);
         }
     }
@@ -65,7 +63,8 @@ public class MonitorImpresorasService : BackgroundService
     {
         if (!File.Exists(PrintersFile)) return;
 
-        var configs = JsonSerializer.Deserialize<List<PrinterConfig>>(await File.ReadAllTextAsync(PrintersFile)) ?? new List<PrinterConfig>();
+        var jsonContent = await File.ReadAllTextAsync(PrintersFile);
+        var configs = JsonSerializer.Deserialize<List<PrinterConfig>>(jsonContent) ?? new List<PrinterConfig>();
         var results = new List<PrinterStatus>();
 
         foreach (var config in configs)
@@ -74,31 +73,20 @@ public class MonitorImpresorasService : BackgroundService
             {
                 PrinterStatus status = config.Model.Equals("MX511de", StringComparison.OrdinalIgnoreCase)
                     ? await new LexmarkMx511Client(config.Name, config.Ip).GetStatusAsync()
-                    : await new LexmarkClient(config.Name, config.Ip, "pepe.printi", "pepito**").GetStatusAsync();
+                    : await new LexmarkClient(config.Name, config.Ip).GetStatusAsync();
 
+                status.Floor = config.Floor;
                 results.Add(status);
             }
             catch (Exception ex) 
             {
-                Console.WriteLine($"❌ Error en impresora {config.Name} ({config.Ip}): {ex.Message}");
-                
-                // Mapeo seguro con los campos reales de PrinterStatus
-                results.Add(new PrinterStatus 
-                { 
-                    Printer = config.Name,
-                    Ip = config.Ip,
-                    UpdatedAt = DateTime.Now,
-                    WasteToner = "Desconectada / Sin respuesta" 
-                });
+                Console.WriteLine($"❌ Error en {config.Name}: {ex.Message}");
+                results.Add(new PrinterStatus { Printer = config.Name, Ip = config.Ip, Floor = config.Floor, WasteToner = "Error" });
             }
         }
 
         var json = JsonSerializer.Serialize(results, new JsonSerializerOptions { WriteIndented = true });
-        string tempFile = OutputFile + ".tmp";
-        
-        await File.WriteAllTextAsync(tempFile, json);
-        File.Move(tempFile, OutputFile, overwrite: true);
-        
-        Console.WriteLine($"🏁 Ciclo terminado: {results.Count} impresoras procesadas. [{DateTime.Now:HH:mm:ss}]");
+        await File.WriteAllTextAsync(OutputFile + ".tmp", json);
+        File.Move(OutputFile + ".tmp", OutputFile, overwrite: true);
     }
 }

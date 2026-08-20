@@ -9,7 +9,6 @@ public class PrintersController : Controller
     private const string PrintersFile = @"C:\Proyectos\LexmarkMonitor\printers.json";
     private const string TriggerFile = @"C:\Proyectos\LexmarkMonitor\Logs\update.trigger";
 
-    // 1. MÉTODO GET: Este carga la vista cuando entras a localhost/Printers (Gestionar)
     [HttpGet]
     public async Task<IActionResult> Index()
     {
@@ -18,7 +17,6 @@ public class PrintersController : Controller
         return View(printers);
     }
 
-    // 2. MÉTODO POST: Este procesa el formulario cuando agregas una impresora
     [HttpPost]
     public async Task<IActionResult> Index(PrinterConfig printer, string? returnUrl)
     {
@@ -42,6 +40,24 @@ public class PrintersController : Controller
         }
 
         return returnUrl == "Dashboard" ? RedirectToAction("Index", "Home") : RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeletePrinter(string ip)
+    {
+        var printers = await LoadPrintersAsync();
+        var printerToDelete = printers.FirstOrDefault(x => x.Ip.Equals(ip, StringComparison.OrdinalIgnoreCase));
+
+        if (printerToDelete != null)
+        {
+            printers.Remove(printerToDelete);
+            await SavePrintersAsync(printers);
+            
+            System.IO.File.WriteAllText(TriggerFile, "eliminado");
+            TempData["SuccessMessage"] = "🗑️ Impresora eliminada correctamente.";
+        }
+
+        return RedirectToAction(nameof(Index));
     }
 
     private static List<string> GetModels()
