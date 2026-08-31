@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "Printer": "Color Norte",
+    "Ip": "172.30.40.24",
+    "Floor": "Piso 19 / Norte",
+    "UpdatedAt": "2026-08-27T10:16:45.8599088-03:00",
+    "Black": 100,
+    "Cyan": 45,
+    "Magenta": 0,
+    "Yellow": 49,
+    "Fuser": 58,
+    "BlackImageUnit": 69,
+    "ColorImageKit": null,
+    "TransferModule": 62,
+    "WasteToner": "OK"
+  },
+  {
+    "Printer": "sur",
+    "Ip": "172.30.40.22",
+    "Floor": "Piso 19 / Sur",
+    "UpdatedAt": "2026-08-27T10:16:46.3287952-03:00",
+    "Black": 87,
+    "Cyan": null,
+    "Magenta": null,
+    "Yellow": null,
+    "Fuser": 91,
+    "BlackImageUnit": 69,
+    "ColorImageKit": null,
+    "TransferModule": null,
+    "WasteToner": "N/A"
+  },
+  {
+    "Printer": "patentes",
+    "Ip": "192.168.200.27",
+    "Floor": "Cuarto piso / patentes",
+    "UpdatedAt": "2026-08-27T10:16:46.9381168-03:00",
+    "Black": 73,
+    "Cyan": null,
+    "Magenta": null,
+    "Yellow": null,
+    "Fuser": 13,
+    "BlackImageUnit": 100,
+    "ColorImageKit": null,
+    "TransferModule": null,
+    "WasteToner": "N/A"
+  },
+  {
+    "Printer": "archivos",
+    "Ip": "192.168.200.16",
+    "Floor": "tercer piso",
+    "UpdatedAt": "2026-08-27T10:16:47.4734585-03:00",
+    "Black": 0,
+    "Cyan": null,
+    "Magenta": null,
+    "Yellow": null,
+    "Fuser": null,
+    "BlackImageUnit": null,
+    "ColorImageKit": null,
+    "TransferModule": null,
+    "WasteToner": "N/A"
+  }
+]
