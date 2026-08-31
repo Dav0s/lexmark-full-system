@@ -1,2 +1,26 @@
 [
+  {
+    "Name": "Color Norte",
+    "Model": "CX725dhe",
+    "Ip": "172.30.40.24",
+    "Floor": "Piso 19 / Norte"
+  },
+  {
+    "Name": "sur",
+    "Model": "MX511de",
+    "Ip": "172.30.40.22",
+    "Floor": "Piso 19 / Sur"
+  },
+  {
+    "Name": "patentes",
+    "Model": "MX511de",
+    "Ip": "192.168.200.27",
+    "Floor": "Cuarto piso / patentes"
+  },
+  {
+    "Name": "archivos",
+    "Model": "MX511de",
+    "Ip": "192.168.200.16",
+    "Floor": "tercer piso"
+  }
 ]
